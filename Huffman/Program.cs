@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 //https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
 //https://rosettacode.org/wiki/Huffman_coding#C.23
@@ -23,7 +20,7 @@ namespace Huffman
                 char a = message[i];
                 try
                 {
-                    characters.Add( a, 0);
+                    characters.Add(a, 0);
                 }
                 catch (Exception) { }
 
@@ -35,13 +32,13 @@ namespace Huffman
             foreach (KeyValuePair<char, int> item in characters)
             {
                 Node = new HuffmanNode(item.Key, item.Value);
-                Nodelist.Add( Node );
+                Nodelist.Add(Node);
             }
             Nodelist.Sort();
 
 
 
-            while(Nodelist.NodeList.Count > 1)
+            while (Nodelist.NodeList.Count > 1)
             {
                 HuffmanNode left = Nodelist.Pop();
                 HuffmanNode right = Nodelist.Pop();
@@ -50,21 +47,21 @@ namespace Huffman
             }
             Nodelist.CreateBinaryLists();
 
-            Console.WriteLine( "Source: {0}", message  );
-            
+            Console.WriteLine("Source: {0}", message);
+
             var encoded = Encode(message, Nodelist.reverseBinaryCodeList);
             Console.WriteLine("Encoded: {0}", encoded);
 
-            var decoded = Decode( encoded, Nodelist.binaryCodeList);
+            var decoded = Decode(encoded, Nodelist.binaryCodeList);
             Console.WriteLine("Decodeder: {0}", decoded);
 
             if (decoded == message)
-                Console.WriteLine( "TOIMII" );
+                Console.WriteLine("TOIMII");
 
             Console.ReadKey();
         }
 
-        static string Encode( string source, SortedList<char, string> codeList )
+        static string Encode(string source, SortedList<char, string> codeList)
         {
             List<string> encodedSource = new List<string>();
             for (int i = 0; i < source.Length; i++)
@@ -81,10 +78,10 @@ namespace Huffman
             string temp = "";
             for (int i = 0; i < encoded.Length; i++)
             {
-                temp = temp+""+encoded[i];
+                temp = temp + "" + encoded[i];
                 try
                 {
-                    if(charList[temp].ToString() != "")
+                    if (charList[temp].ToString() != "")
                     {
                         decodedSource.Add(charList[temp].ToString());
                         temp = "";
@@ -96,6 +93,6 @@ namespace Huffman
             return String.Join("", decodedSource.ToArray());
         }
     }
-    
+
 
 }
