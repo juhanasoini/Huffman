@@ -42,7 +42,6 @@ namespace Huffman
             if (NodeList[0] == null)
                 return;
 
-
             List<int> path = new List<int>();
             HuffmanNode root = NodeList[0];
             HuffmanNode branch = root;

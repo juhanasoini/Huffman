@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 
 //https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/
-//https://rosettacode.org/wiki/Huffman_coding#C.23
-//https://rosettacode.org/wiki/Priority_queue#C.23
 
 namespace Huffman
 {
@@ -12,9 +10,13 @@ namespace Huffman
         static void Main(string[] args)
         {
             SortedList<char, int> characters = new SortedList<char, int>();
-            //string message = "Merkkijono testaukseen";
-            Console.Write("Anna merkkijono: ");
-            var message = Console.ReadLine();
+            string message = "";
+            while (message == "")
+            {
+                Console.Write("Anna merkkijono: ");
+                message = Console.ReadLine();
+            }
+            
             for (int i = 0; i < message.Length; i++)
             {
                 char a = message[i];
@@ -36,8 +38,6 @@ namespace Huffman
             }
             Nodelist.Sort();
 
-
-
             while (Nodelist.NodeList.Count > 1)
             {
                 HuffmanNode left = Nodelist.Pop();
@@ -53,7 +53,7 @@ namespace Huffman
             Console.WriteLine("Encoded: {0}", encoded);
 
             var decoded = Decode(encoded, Nodelist.binaryCodeList);
-            Console.WriteLine("Decodeder: {0}", decoded);
+            Console.WriteLine("Decodeded: {0}", decoded);
 
             if (decoded == message)
                 Console.WriteLine("TOIMII");
@@ -93,6 +93,4 @@ namespace Huffman
             return String.Join("", decodedSource.ToArray());
         }
     }
-
-
 }
