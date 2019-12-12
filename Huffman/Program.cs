@@ -29,6 +29,7 @@ namespace Huffman
                 characters[a]++;
             }
 
+            //Luodaan jokaisesta merkistä Node olio joka lisätään listalle
             HuffmanNode Node;
             HuffmanNodeList Nodelist = new HuffmanNodeList();
             foreach (KeyValuePair<char, int> item in characters)
@@ -38,6 +39,8 @@ namespace Huffman
             }
             Nodelist.Sort();
 
+            //Jatketaan listan käsittelyä. Tehdään binääripuu.
+            //Käyydään listaa läpi niin kauan, että listalla on vain yksi päätason elementti
             while (Nodelist.NodeList.Count > 1)
             {
                 HuffmanNode left = Nodelist.Pop();
@@ -61,6 +64,7 @@ namespace Huffman
             Console.ReadKey();
         }
 
+        //Luo koodatun stringin
         static string Encode(string source, SortedList<char, string> codeList)
         {
             List<string> encodedSource = new List<string>();
@@ -72,6 +76,7 @@ namespace Huffman
             return String.Join("", encodedSource.ToArray());
         }
 
+        //Dekoodaa koodatun stringin
         static string Decode(string encoded, SortedList<string, char> charList)
         {
             List<string> decodedSource = new List<string>();
